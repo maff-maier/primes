@@ -7,6 +7,13 @@ struct Primes {
 }
 
 impl Primes {
+    pub fn new() -> Self {
+        Self {
+            current: 2,
+            primes: Vec::new(),
+        }
+    }
+
     fn is_prime(&self, n: u32) -> bool {
         !self.primes.iter().any(|&prime| n % prime == 0)
     }
@@ -38,23 +45,8 @@ impl Iterator for Primes {
     }
 }
 
-fn primes() -> Primes {
-    Primes {
-        current: 2,
-        primes: Vec::new(),
-    }
-}
-
 fn main() {
-    let mut prime = primes();
+    let mut prime = Primes::new();
 
-    println!("{:#?}", prime);
-
-    println!("{}", prime.nth(10).unwrap());
-
-    println!("{:#?}", prime);
-
-    println!("{}", prime.nth(10_000).unwrap());
-
-    println!("{:#?}", prime);
+    println!("{}", prime.nth(1_000).unwrap());
 }
